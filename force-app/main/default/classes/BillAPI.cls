@@ -3,7 +3,7 @@ public with sharing class BillAPI {
     //start by creating an HttpRequest object and set the endpoint and method.
     Http http = new Http();
     HttpRequest request = new HttpRequest();
-    request.setEndpoint('callout:Bill_API');
+    request.setEndpoint('callout:Billing_API');
     request.setMethod('GET');
     //set up an Http object and an HTTPResponse Object and use the .getBody() method here.
     HttpResponse response = http.send(request);
@@ -40,9 +40,9 @@ public with sharing class BillAPI {
       billToInsert.Account__c = activeAccountMap.get(bw.accountName);
       billToInsert.Balance__c = Decimal.valueOf(bw.balance.replace('$', ''));
       billsToInsert.add(billToInsert);
-      //finally, insert the new bills list
-      insert billsToInsert;
     }
+    //finally, insert the new bills list
+    insert billsToInsert;
   }
   //this is what's known as a wrapper class. A wrapper class
   //allows us to create an instance of a class with the properties
